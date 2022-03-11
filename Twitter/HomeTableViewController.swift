@@ -9,7 +9,6 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
-
 	var tweets = [Tweet]() {
 		didSet {
 			tableView.reloadData()
@@ -20,27 +19,42 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
 
 		loadNewTweets()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+		let myRefreshControl = UIRefreshControl()
+		myRefreshControl.addTarget(self,
+								   action: #selector(loadNewTweets),
+								   for: .valueChanged)
+		self.refreshControl = myRefreshControl
     }
 	
-	func loadNewTweets() {
+	@objc func loadNewTweets() {
+		loadTweets(count: 20)
+		self.refreshControl?.endRefreshing()
+	}
+	
+	func loadTweets(count: Int) {
 		let url = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+		let params = ["count" : count]
+		
 		TwitterAPICaller.client?
 			.getDictionariesRequest(url: url,
-									parameters: [:],
+									parameters: params,
 									success: { dicts in
 				self.tweets = try! JSONDecoder().decode([Tweet].self,
-						from: JSONSerialization.data(withJSONObject: dicts, options: .prettyPrinted))
+										from: JSONSerialization.data(withJSONObject: dicts,
+																	 options: .prettyPrinted))
 			},
 									failure: { error in
 				print("Couldn't get tweet: \(error.localizedDescription)")
 			})
 	}
 
+	override func tableView(_ tableView: UITableView,
+							willDisplay cell: UITableViewCell,
+							forRowAt indexPath: IndexPath) {
+		if indexPath.row + 1 == tweets.count {
+			loadTweets(count: tweets.count + 10)
+		}
+	}
 	override func tableView(_ tableView: UITableView,
 							cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell",
