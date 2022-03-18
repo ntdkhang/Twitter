@@ -66,13 +66,50 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
         })
     }
 	
-	func postTweet(tweet: String,
+	func postTweet(tweetContent: String,
 				   success: @escaping () -> (),
 				   failure: @escaping (Error) -> ()) {
 		postRequest(url: "https://api.twitter.com/1.1/statuses/update.json",
-					parameters: ["status" : tweet],
+					parameters: ["status" : tweetContent],
 					success: success,
 					failure: failure)
 	}
+	
+	func likeTweet(tweetID: Int,
+				   success: @escaping () -> (),
+				   failure: @escaping (Error) -> ()) {
+		postRequest(url: "https://api.twitter.com/1.1/favorites/create.json",
+					parameters: ["id" : tweetID],
+					success: success,
+					failure: failure)
+	}
+	
+	func removeLikeTweet(tweetID: Int,
+						 success: @escaping () -> (),
+						 failure: @escaping (Error) -> ()) {
+		postRequest(url: "https://api.twitter.com/1.1/favorites/destroy.json",
+					parameters: ["id" : tweetID],
+					success: success,
+					failure: failure)
+	}
+	
+	func retweet(tweetID: Int,
+				 success: @escaping () -> (),
+				 failure: @escaping (Error) -> ()) {
+		postRequest(url: "https://api.twitter.com/1.1/statuses/retweet/:id.json",
+					parameters: ["id" : tweetID],
+					success: success,
+					failure: failure)
+	}
+	
+	func unRetweet(tweetID: Int,
+				 success: @escaping () -> (),
+				 failure: @escaping (Error) -> ()) {
+		postRequest(url: "https://api.twitter.com/1.1/statuses/unretweet/:id.json",
+					parameters: ["id" : tweetID],
+					success: success,
+					failure: failure)
+	}
+	
     
 }

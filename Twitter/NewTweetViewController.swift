@@ -1,5 +1,5 @@
 //
-//  TweetViewController.swift
+//  NewTweetViewController.swift
 //  Twitter
 //
 //  Created by Nguyen Tran Duy Khang on 3/18/22.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TweetViewController: UIViewController {
-
+class NewTweetViewController: UIViewController {
+	@IBOutlet weak var tweetTextView: UITextView!
+	
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(animated: true)
 	}
@@ -17,7 +18,7 @@ class TweetViewController: UIViewController {
 	
 	@IBAction func tweet(_ sender: Any) {
 		if !tweetTextView.text.isEmpty {
-			TwitterAPICaller.client?.postTweet(tweet: tweetTextView.text,
+			TwitterAPICaller.client?.postTweet(tweetContent: tweetTextView.text,
 											   success: {
 				self.dismiss(animated: true)
 			}, failure: { error in
@@ -29,7 +30,7 @@ class TweetViewController: UIViewController {
 		}
 	}
 	
-	@IBOutlet weak var tweetTextView: UITextView!
+	
 	
 	override func viewDidLoad() {
         super.viewDidLoad()

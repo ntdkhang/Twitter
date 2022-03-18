@@ -16,6 +16,68 @@ class TweetTableViewCell: UITableViewCell {
 	@IBOutlet weak var userNameLabel: UILabel!
 	@IBOutlet weak var tweetContentLabel: UILabel!
 	
+	@IBOutlet weak var likeButton: UIButton!
+	@IBOutlet weak var retweetButton: UIButton!
+	
+	var liked = false {
+		didSet {
+			if liked {
+				likeButton.setImage(UIImage(systemName: "heart.fill")!,
+									for: UIControl.State.normal)
+				likeButton.tintColor = .red
+			} else {
+				likeButton.setImage(UIImage(systemName: "heart")!,
+									for: UIControl.State.normal)
+				likeButton.tintColor = .secondaryLabel
+			}
+		}
+	}
+	var retweeted = false {
+		didSet {
+			if retweeted {
+				retweetButton.tintColor = .red
+			} else {
+				retweetButton.tintColor = .secondaryLabel
+			}
+		}
+	
+	}
+	var id: Int = -1
+	
+	@IBAction func like(_ sender: Any) {
+		if liked {
+			TwitterAPICaller.client?.removeLikeTweet(tweetID: id) {
+				self.liked = false
+			} failure: {
+				print("Cannot remove like: \($0.localizedDescription)")
+			}
+		} else {
+			TwitterAPICaller.client?.likeTweet(tweetID: id) {
+				self.liked = true
+			} failure: {
+				print("Cannot like tweet: \($0.localizedDescription)")
+			}
+		}
+	}
+	
+	@IBAction func retweet(_ sender: Any) {
+//		if retweeted {
+//			TwitterAPICaller.client?.unRetweet(tweetID: id) {
+//				self.retweeted = false
+//			} failure: {
+//				print("Cannot un-retweet: \($0.localizedDescription)")
+//			}
+//		} else {
+//			TwitterAPICaller.client?.retweet(tweetID: id) {
+//				self.retweeted = true
+//			} failure: {
+//				print("Cannot retweet: \($0.localizedDescription)")
+//			}
+//		}
+		retweeted.toggle()
+	}
+	
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -34,7 +96,9 @@ class TweetTableViewCell: UITableViewCell {
 		if let imgData = try? Data(contentsOf: imgUrl) {
 			profileImageView.image = UIImage(data: imgData)
 		}
-		
+		liked = tweet.liked
+		retweeted = tweet.retweeted
+		id = tweet.id
 	}
 
 }
