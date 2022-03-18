@@ -10,7 +10,11 @@ import UIKit
 
 class TweetViewController: UIViewController {
 
-    override func viewDidLoad() {
+	
+	@IBAction func cancel(_ sender: Any) {
+		dismiss(animated: true)
+	}
+	override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

@@ -6,4 +6,8 @@
 //  Copyright © 2022 Dan. All rights reserved.
 //
 
-import Foundation
+
+struct Keys {
+	static let consumerKey: String = ""
+	static let consumerSecret: String = ""
+}
