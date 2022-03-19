@@ -24,6 +24,7 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://media.giphy.com/media/xSYCMpwMaXHcETCDPx/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+<img src='https://media.giphy.com/media/K5gejoHfYR2dynDIyz/giphy.gif' title='Retweet' width='' alt='Retweet' />
 
 
 
