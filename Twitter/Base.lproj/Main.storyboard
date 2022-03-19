@@ -89,7 +89,9 @@
                                             </constraints>
                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
+                                            </buttonConfiguration>
                                             <connections>
                                                 <action selector="like:" destination="3YP-wj-c5l" eventType="touchUpInside" id="2AY-k6-Ukc"/>
                                             </connections>
@@ -102,7 +104,9 @@
                                             </constraints>
                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="arrow.2.squarepath" catalog="system"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="arrow.2.squarepath" catalog="system" title="">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
+                                            </buttonConfiguration>
                                             <connections>
                                                 <action selector="retweet:" destination="3YP-wj-c5l" eventType="touchUpInside" id="Z7L-St-kPK"/>
                                             </connections>
@@ -140,6 +144,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="U7s-Vr-UT1">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="ASa-R2-CSS">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="onLogout:" destination="XK1-4s-32k" id="5ll-lN-P7A"/>
                             </connections>
@@ -148,6 +153,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="fC6-Qj-fXT">
                                 <rect key="frame" x="302" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Tweet"/>
                                 <connections>
@@ -170,20 +176,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fZr-JS-LVR">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <rect key="frame" x="8" y="96" width="398" height="746"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/280" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09u-19-3dH">
+                                <rect key="frame" x="360" y="71" width="46" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lqi-y5-g4P"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lqi-y5-g4P" firstAttribute="bottom" secondItem="fZr-JS-LVR" secondAttribute="bottom" id="Tq2-yU-ud5"/>
-                            <constraint firstItem="lqi-y5-g4P" firstAttribute="trailing" secondItem="fZr-JS-LVR" secondAttribute="trailing" id="jzO-kv-ezw"/>
-                            <constraint firstItem="fZr-JS-LVR" firstAttribute="top" secondItem="lqi-y5-g4P" secondAttribute="top" id="tbK-5K-PvP"/>
-                            <constraint firstItem="fZr-JS-LVR" firstAttribute="leading" secondItem="lqi-y5-g4P" secondAttribute="leading" id="y9G-Xt-Tza"/>
+                            <constraint firstItem="fZr-JS-LVR" firstAttribute="top" secondItem="09u-19-3dH" secondAttribute="bottom" id="dGS-NA-WxP"/>
+                            <constraint firstItem="lqi-y5-g4P" firstAttribute="trailing" secondItem="fZr-JS-LVR" secondAttribute="trailing" constant="8" id="jzO-kv-ezw"/>
+                            <constraint firstItem="09u-19-3dH" firstAttribute="top" secondItem="lqi-y5-g4P" secondAttribute="top" constant="15" id="l8c-07-pz3"/>
+                            <constraint firstItem="fZr-JS-LVR" firstAttribute="top" secondItem="lqi-y5-g4P" secondAttribute="top" constant="40" id="tbK-5K-PvP"/>
+                            <constraint firstItem="lqi-y5-g4P" firstAttribute="trailing" secondItem="09u-19-3dH" secondAttribute="trailing" constant="8" id="tc9-4E-vIa"/>
+                            <constraint firstItem="fZr-JS-LVR" firstAttribute="leading" secondItem="lqi-y5-g4P" secondAttribute="leading" constant="8" id="y9G-Xt-Tza"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wFq-cH-HRu">
@@ -191,6 +206,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qXj-wH-5B7">
                                 <rect key="frame" x="20" y="11" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
                                 <connections>
@@ -205,6 +221,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="WTf-xp-mwl">
                                 <rect key="frame" x="302" y="11" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Tweet"/>
                                 <connections>
@@ -214,6 +231,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="characterCountLabel" destination="09u-19-3dH" id="Dpc-98-BFz"/>
                         <outlet property="tweetTextView" destination="fZr-JS-LVR" id="5fZ-LF-vMd"/>
                     </connections>
                 </viewController>

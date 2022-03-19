@@ -96,7 +96,7 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
 	func retweet(tweetID: Int,
 				 success: @escaping () -> (),
 				 failure: @escaping (Error) -> ()) {
-		postRequest(url: "https://api.twitter.com/1.1/statuses/retweet/:id.json",
+		postRequest(url: "https://api.twitter.com/1.1/statuses/retweet/\(tweetID).json",
 					parameters: ["id" : tweetID],
 					success: success,
 					failure: failure)
@@ -105,7 +105,7 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
 	func unRetweet(tweetID: Int,
 				 success: @escaping () -> (),
 				 failure: @escaping (Error) -> ()) {
-		postRequest(url: "https://api.twitter.com/1.1/statuses/unretweet/:id.json",
+		postRequest(url: "https://api.twitter.com/1.1/statuses/unretweet/\(tweetID).json",
 					parameters: ["id" : tweetID],
 					success: success,
 					failure: failure)

@@ -35,7 +35,7 @@ class TweetTableViewCell: UITableViewCell {
 	var retweeted = false {
 		didSet {
 			if retweeted {
-				retweetButton.tintColor = .red
+				retweetButton.tintColor = .green
 			} else {
 				retweetButton.tintColor = .secondaryLabel
 			}
@@ -61,20 +61,19 @@ class TweetTableViewCell: UITableViewCell {
 	}
 	
 	@IBAction func retweet(_ sender: Any) {
-//		if retweeted {
-//			TwitterAPICaller.client?.unRetweet(tweetID: id) {
-//				self.retweeted = false
-//			} failure: {
-//				print("Cannot un-retweet: \($0.localizedDescription)")
-//			}
-//		} else {
-//			TwitterAPICaller.client?.retweet(tweetID: id) {
-//				self.retweeted = true
-//			} failure: {
-//				print("Cannot retweet: \($0.localizedDescription)")
-//			}
-//		}
-		retweeted.toggle()
+		if retweeted {
+			TwitterAPICaller.client?.unRetweet(tweetID: id) {
+				self.retweeted = false
+			} failure: {
+				print("Cannot un-retweet: \($0.localizedDescription)")
+			}
+		} else {
+			TwitterAPICaller.client?.retweet(tweetID: id) {
+				self.retweeted = true
+			} failure: {
+				print("Cannot retweet: \($0.localizedDescription)")
+			}
+		}
 	}
 	
 	
